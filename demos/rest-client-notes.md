@@ -22,7 +22,7 @@ Content-Type: application/json
 - JSON object can not have a trailing comma after the last property (it is generated on the server by the API)
 - JSON objects can not have a trailing comma after the last property 
 
-## Put (Update)
+## PUT (Update)
 
 If you are doing a PUT
 
@@ -35,3 +35,13 @@ Content-Type: application/json
 - You need a JSON object in the body 
 - JSON object can not have a trailing comma after the last property (it is generated on the server by the API)
 - JSON objects can not have a trailing comma after the last property 
+
+## DELETE (Delete)
+
+If you are doing a DELETE
+
+- Make sure the HTTP Method is DELETE
+- URL should come after the HTTP Method
+- You need to put an id at the end
+- No headers needed
+- No body needed
