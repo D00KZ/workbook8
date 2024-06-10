@@ -1,0 +1,23 @@
+## GET
+If you are doing a GET:
+
+- Make sure the HTTP Method is GET
+- URL should come after the HTTP Method
+- No headers needed
+- No body needed
+- If you are trying to get ALL (an array) do not put an ID at the end.
+- If you are trying to get ONE (an array) you need to put an ID at the end.
+
+## POST
+
+If you are doing a POST:
+
+- Make sure the HTTP Mythod is POST (Not GET)
+- You don't want a id in the URL
+- You need an HTTP header to tell the server about the content-type 
+```http
+Content-Type: application/json
+```
+- You need a JSON object in the body 
+- JSON object can not have a trailing comma after the last property (it is generated on the server by the API)
+- JSON objects can not have a trailing comma after the last property 
