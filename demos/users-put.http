@@ -1,4 +1,4 @@
-PUT http://localhost:3000/users/12
+POST http://localhost:3000/users/12
 Content-Type: application/json
 
 {
