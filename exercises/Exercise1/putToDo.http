@@ -1,0 +1,8 @@
+PUT http://localhost:3000/todos/10
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "title": "another one (DJ KAHLED!)",
+    "completed": false
+  }
