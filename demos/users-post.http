@@ -1,0 +1,25 @@
+POST http://localhost:3000/users/
+Content-Type: application/json
+
+{
+  "name": "Goober McJohnson",
+  "username": "McGoober",
+  "email": "MrGoober@annie.ca",
+  "address": {
+    "street": "Micky Mouse Club House",
+    "suite": "Suite 1",
+    "city": "Place Unknown",
+    "zipcode": "1111",
+    "geo": {
+      "lat": "-31.8129",
+      "lng": "62.5342"
+    }
+  },
+  "phone": "(111)111-1234",
+  "website": "demarco.info",
+  "company": {
+    "name": "Keebler LLC",
+    "catchPhrase": "User-centric fault-tolerant solution",
+    "bs": "revolutionize end-to-end systems"
+  }
+}
