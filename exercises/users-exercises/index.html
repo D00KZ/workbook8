@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+  </head>
+  <body>
+    <main>
+      <h2>Table</h2>
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button type="button" id="displayUsersButton">Select</button>
+    </main>
+
+    <footer></footer>
+
+    <script>
+      "use strict";
+
+      let userTableBody = document.querySelector("#userTable tbody");
+      let displayUsersButton = document.querySelector("#displayUsersButton");
+
+      displayUsersButton.onclick = () => {
+        function fetchAndDisplayUserData() {
+          fetch("http://localhost:3000/users")
+            .then((response) => response.json())
+            .then((users) => {
+                userTableBody.innerHTML = "";
+
+              for (const user of users) {
+                let row = userTableBody.insertRow();
+
+                let cell1 = row.insertCell(0);
+                cell1.innerText = user.name;
+
+                let cell2 = row.insertCell(1);
+                cell2.innerText = user.username;
+
+                let cell3 = row.insertCell(2);
+                cell3.innerText = user.email;
+              }
+            });
+        }
+
+        fetchAndDisplayUserData();
+      };
+    </script>
+  </body>
+</html>
+
