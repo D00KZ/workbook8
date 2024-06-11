@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+  </head>
+  <body>
+    <header>
+        <a href="index.html">Home</a>
+    </header>
+
+    <main>
+      <h2>Add User</h2>
+
+      <form id="userForm">
+        <table>
+          <tr>
+            <td><h5>Name</h5></td>
+            <td><input type="text" id="usersName" placeholder="Enter Name" value="" /></td>
+          </tr>
+          <tr>
+            <td><h5>Username</h5></td>
+            <td><input type="text" id="usersUsername" placeholder="Enter Username" value="" /></td>
+          </tr>
+          <tr>
+            <td><h5>Email</h5></td>
+            <td><input type="text" id="usersEmail" placeholder="Enter Email" value="" /></td>
+          </tr>
+        </table>
+
+        <button type="button" id="saveButton">Save</button>
+      </form>
+    </main>
+
+    <footer></footer>
+    <script>
+      "use strict";
+
+      let saveButton = document.querySelector("#saveButton");
+
+      saveButton.onclick = () => {
+        let usersName = document.querySelector("#usersName").value;
+        let usersUsername = document.querySelector("#usersUsername").value;
+        let usersEmail = document.querySelector("#usersEmail").value;
+
+        let newUser = {
+          name: usersName,
+          username: usersUsername,
+          email: usersEmail,
+        };
+
+        let requestInit = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newUser),
+        };
+
+        function saveNewData() {
+          fetch("http://localhost:3000/users", requestInit)
+            .then((response) => response.json())
+        }
+
+        saveNewData();
+      };
+    </script>
+  </body>
+</html>
+
