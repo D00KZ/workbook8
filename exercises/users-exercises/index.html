@@ -9,12 +9,15 @@
   <body>
     <main>
       <h2>Table</h2>
+      <a href="addNewUser.html">Add User</a>
       <table id="userTable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
+            <td>Name</td>
+            <td>Username</td>
+            <td>Email</td>
+            <td>Edit</td>
+            <td>Delete</td>
           </tr>
         </thead>
         <tbody></tbody>
@@ -35,7 +38,7 @@
           fetch("http://localhost:3000/users")
             .then((response) => response.json())
             .then((users) => {
-                userTableBody.innerHTML = "";
+              userTableBody.innerHTML = "";
 
               for (const user of users) {
                 let row = userTableBody.insertRow();
@@ -48,6 +51,22 @@
 
                 let cell3 = row.insertCell(2);
                 cell3.innerText = user.email;
+
+                let cell4 = row.insertCell(3);
+                let editLink = document.createElement("a");
+                editLink.href = `edit.html?id=${user.id}`;
+                editLink.innerText = "Edit";
+                cell4.appendChild(editLink);
+
+                let cell5 = row.insertCell(4);
+                let deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                deleteButton.onclick = () => {
+                  fetch(`http://localhost:3000/users/${user.id}`, { method: "DELETE" }).then(() => {
+                    fetchAndDisplayUserData();
+                  });
+                };
+                cell5.appendChild(deleteButton);
               }
             });
         }
@@ -57,4 +76,3 @@
     </script>
   </body>
 </html>
-
