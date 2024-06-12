@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="Styles/styles.css">
+  </head>
+  <body>
+    <header>
+      <a href="index.html">Home</a>
+    </header>
+
+    <main>
+      <h2>Edit User</h2>
+
+      <form id="userForm">
+        <table>
+          <tr>
+            <td><h5>Name</h5></td>
+            <td><input type="text" id="usersEditedName" value="" /></td>
+          </tr>
+          <tr>
+            <td><h5>Username</h5></td>
+            <td><input type="text" id="usersEditedUsername" value="" /></td>
+          </tr>
+          <tr>
+            <td><h5>Email</h5></td>
+            <td><input type="text" id="usersEditedEmail" value="" /></td>
+          </tr>
+        </table>
+
+        <button type="button" id="saveEditButton">Save</button>
+      </form>
+    </main>
+
+    <footer></footer>
+    <script>
+      "use strict";
+
+        const params = new URLSearchParams(window.location.search);
+        const userId = params.get("id");
+
+        if (userId) {
+          fetch(`http://localhost:3000/users/${userId}`)
+            .then((response) => response.json())
+            .then((user) => {
+              document.querySelector("#usersEditedName").value = user.name;
+              document.querySelector("#usersEditedUsername").value = user.username;
+              document.querySelector("#usersEditedEmail").value = user.email;
+            });
+        }
+
+        let saveEditButton = document.querySelector("#saveEditButton");
+
+        saveEditButton.onclick = () => {
+          let usersEditedName = document.querySelector("#usersEditedName").value;
+          let usersEditedUsername = document.querySelector("#usersEditedUsername").value;
+          let usersEditedEmail = document.querySelector("#usersEditedEmail").value;
+
+          let updatedUser = {
+            name: usersEditedName,
+            username: usersEditedUsername,
+            email: usersEditedEmail,
+          };
+
+          let requestInit = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedUser),
+          };
+
+          function saveUpdatedData() {
+            fetch(`http://localhost:3000/users/${userId}`, requestInit).then((response) => response.json());
+          }
+
+          saveUpdatedData();
+        };
+
+    </script>
+  </body>
+</html>
